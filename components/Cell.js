@@ -96,6 +96,10 @@ const Cell = props => {
       styles.accessory_detailText,
       { color: accessoryColor },
     ],
+    accessory_disclosureIndicator: [
+      styles.accessory_disclosureIndicator,
+      { borderColor: accessoryColor },
+    ],
   };
 
   /**
@@ -375,8 +379,8 @@ const styles = StyleSheet.create({
     height: 10,
     marginLeft: 7,
     backgroundColor: 'transparent',
-    borderTopWidth: 1,
-    borderRightWidth: 1,
+    borderTopWidth: 1.5,
+    borderRightWidth: 1.5,
     borderColor: '#c7c7cc',
     transform: [
       {
