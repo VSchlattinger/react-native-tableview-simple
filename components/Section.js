@@ -20,6 +20,7 @@ class Section extends Component {
     this.handleUnHighlightRow = () =>
       this.setState({ highlightedRowIndex: undefined });
   }
+
   render() {
     const {
       allowFontScaling,
@@ -79,19 +80,20 @@ class Section extends Component {
         onUnHighlightRow: this.handleUnHighlightRow,
       };
 
-      // Skip rendering of separator
-      if (
-        hideSeparator ||
+      let isLastChild =
         !Array.isArray(children) ||
         React.Children.count(children) === 1 ||
-        index === React.Children.count(children) - 1
-      ) {
+        index === React.Children.count(children) - 1;
+
+      // Skip rendering of separator
+      if (hideSeparator && !isLastChild) {
         return React.cloneElement(child, propsToAdd);
       }
 
       const invisibleSeparator =
-        this.state.highlightedRowIndex === index ||
-        this.state.highlightedRowIndex === index + 1;
+        !isLastChild &&
+        (this.state.highlightedRowIndex === index ||
+          this.state.highlightedRowIndex === index + 1);
 
       // Add margin, if Image is provided
       if (child.props.image) {
@@ -106,8 +108,8 @@ class Section extends Component {
             isHidden={invisibleSeparator}
             backgroundColor={child.props.backgroundColor}
             tintColor={separatorTintColor}
-            insetLeft={separatorInsetLeft}
-            insetRight={separatorInsetRight}
+            insetLeft={isLastChild ? 0 : separatorInsetLeft}
+            insetRight={isLastChild ? 0 : separatorInsetRight}
           />
         </View>
       );
@@ -160,7 +162,6 @@ class Section extends Component {
           <Separator insetLeft={0} tintColor={separatorTintColor} />
         )}
         {React.Children.map(children, renderChild)}
-        <Separator insetLeft={0} tintColor={separatorTintColor} />
         {footerComponent || renderFooter()}
       </View>
     );
