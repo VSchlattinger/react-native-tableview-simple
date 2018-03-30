@@ -156,7 +156,9 @@ class Section extends Component {
     return (
       <View style={_styles.section}>
         {headerComponent || renderHeader()}
-        <Separator insetLeft={0} tintColor={separatorTintColor} />
+        {this.props.hideBorderTop ? null : (
+          <Separator insetLeft={0} tintColor={separatorTintColor} />
+        )}
         {React.Children.map(children, renderChild)}
         <Separator insetLeft={0} tintColor={separatorTintColor} />
         {footerComponent || renderFooter()}
@@ -203,6 +205,7 @@ Section.propTypes = {
   separatorInsetLeft: PropTypes.number,
   separatorInsetRight: PropTypes.number,
   separatorTintColor: PropTypes.string,
+  hideBorderTop: PropTypes.bool,
 };
 
 Section.defaultProps = {
@@ -221,6 +224,7 @@ Section.defaultProps = {
   separatorInsetLeft: 15,
   separatorInsetRight: 0,
   separatorTintColor: '#C8C7CC',
+  hideBorderTop: false,
 };
 
 export default Section;
