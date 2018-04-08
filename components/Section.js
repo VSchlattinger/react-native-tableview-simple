@@ -91,15 +91,8 @@ class Section extends Component {
       }
 
       const invisibleSeparator =
-        !isLastChild &&
-        (this.state.highlightedRowIndex === index ||
-          this.state.highlightedRowIndex === index + 1);
-
-      // Add margin, if Image is provided
-      if (child.props.image) {
-        // Only update if not manually updated
-        const insetLeft = separatorInsetLeft !== 15 ? separatorInsetLeft : 60;
-      }
+        this.state.highlightedRowIndex === index ||
+        this.state.highlightedRowIndex === index + 1;
 
       return (
         <View>
@@ -108,8 +101,8 @@ class Section extends Component {
             isHidden={invisibleSeparator}
             backgroundColor={child.props.backgroundColor}
             tintColor={separatorTintColor}
-            insetLeft={isLastChild ? 0 : separatorInsetLeft}
-            insetRight={isLastChild ? 0 : separatorInsetRight}
+            insetLeft={0}
+            insetRight={0}
           />
         </View>
       );
