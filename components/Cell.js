@@ -298,6 +298,7 @@ const Cell = props => {
   if (isPressable && !isDisabled) {
     return (
       <TouchableHighlight
+        collapsable={false}
         activeOpacity={highlightActiveOpacity}
         onPress={onPress}
         underlayColor={highlightUnderlayColor}
@@ -308,7 +309,7 @@ const Cell = props => {
       </TouchableHighlight>
     );
   }
-  return <View>{renderCell()}</View>;
+  return <View collapsable={false}>{renderCell()}</View>;
 };
 
 const styles = StyleSheet.create({
