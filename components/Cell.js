@@ -289,7 +289,7 @@ const Cell = props => {
    * @return {View} Complete View with cell elements
    */
   const renderCell = () => (
-    <View style={_styles.cell} collapsable={false} ref={innerRef}>
+    <View style={_styles.cell}>
       {cellImageView || renderImageView()}
       {cellContentView || renderCellContentView()}
       {cellAccessoryView || renderAccessoryView()}

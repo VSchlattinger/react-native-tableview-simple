@@ -95,7 +95,7 @@ class Section extends Component {
         this.state.highlightedRowIndex === index + 1;
 
       return (
-        <View>
+        <View collapsable={false} ref={child.props.innerRef}>
           {React.cloneElement(child, propsToAdd)}
           <Separator
             isHidden={invisibleSeparator}
