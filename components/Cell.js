@@ -289,7 +289,7 @@ const Cell = props => {
    * @return {View} Complete View with cell elements
    */
   const renderCell = () => (
-    <View style={_styles.cell}>
+    <View style={_styles.cell} collapsable={false} ref={innerRef}>
       {cellImageView || renderImageView()}
       {cellContentView || renderCellContentView()}
       {cellAccessoryView || renderAccessoryView()}
@@ -299,8 +299,6 @@ const Cell = props => {
   if (isPressable && !isDisabled) {
     return (
       <TouchableHighlight
-        collapsable={!innerRef}
-        ref={innerRef}
         activeOpacity={highlightActiveOpacity}
         onPress={onPress}
         underlayColor={highlightUnderlayColor}
@@ -311,11 +309,7 @@ const Cell = props => {
       </TouchableHighlight>
     );
   }
-  return (
-    <View collapsable={!innerRef} ref={innerRef}>
-      {renderCell()}
-    </View>
-  );
+  return <View>{renderCell()}</View>;
 };
 
 const styles = StyleSheet.create({
