@@ -34,6 +34,7 @@ const Cell = props => {
     onUnHighlightRow,
     leftDetailColor,
     rightDetailColor,
+    innerRef,
     subtitleColor,
     subtitleTextStyle,
     title,
@@ -298,7 +299,8 @@ const Cell = props => {
   if (isPressable && !isDisabled) {
     return (
       <TouchableHighlight
-        collapsable={false}
+        collapsable={!innerRef}
+        ref={innerRef}
         activeOpacity={highlightActiveOpacity}
         onPress={onPress}
         underlayColor={highlightUnderlayColor}
@@ -309,7 +311,11 @@ const Cell = props => {
       </TouchableHighlight>
     );
   }
-  return <View collapsable={false}>{renderCell()}</View>;
+  return (
+    <View collapsable={!innerRef} ref={innerRef}>
+      {renderCell()}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -446,6 +452,7 @@ Cell.propTypes = {
   onHighlightRow: PropTypes.func,
   onUnHighlightRow: PropTypes.func,
   rightDetailColor: PropTypes.string,
+  innerRef: PropTypes.func,
   subtitleColor: PropTypes.string,
   subtitleTextStyle: Text.propTypes.style,
   title: PropTypes.oneOfType([

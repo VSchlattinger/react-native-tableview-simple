@@ -302,6 +302,11 @@ export interface CellProps {
   rightDetailColor?: string;
 
   /**
+   * Ref for inner view
+   */
+  innerRef?: (c: React.Component) => void;
+
+  /**
    * Text color of subtitle
    *
    * @default #000
