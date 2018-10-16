@@ -137,6 +137,11 @@ export interface SectionProps {
    * @memberOf SectionProps
    */
   hideBorderTop?: boolean;
+
+  /**
+   * Ref for inner view
+   */
+  innerRef?: (c: React.Component) => void;
 }
 
 export interface CellProps {

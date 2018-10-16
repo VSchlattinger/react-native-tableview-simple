@@ -36,6 +36,7 @@ class Section extends Component {
       separatorInsetLeft,
       separatorInsetRight,
       separatorTintColor,
+      innerRef,
     } = this.props;
 
     const header = this.props.header ? this.props.header : false;
@@ -149,7 +150,7 @@ class Section extends Component {
     };
 
     return (
-      <View style={_styles.section}>
+      <View style={_styles.section} collapsable={false} ref={innerRef}>
         {headerComponent || renderHeader()}
         {this.props.hideBorderTop ? null : (
           <Separator insetLeft={0} tintColor={separatorTintColor} />
@@ -200,6 +201,7 @@ Section.propTypes = {
   separatorInsetRight: PropTypes.number,
   separatorTintColor: PropTypes.string,
   hideBorderTop: PropTypes.bool,
+  innerRef: PropTypes.func,
 };
 
 Section.defaultProps = {
